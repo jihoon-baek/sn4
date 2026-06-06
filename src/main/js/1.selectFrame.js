@@ -9,52 +9,20 @@ export default () => {
 
 const changeCut = (opt) => {
     if (opt == state.frameNum) return;
-    const prev = document.getElementById('cut'+state.frameNum);
+    const prev = document.getElementById('cut' + state.frameNum);
     if (prev) prev.innerHTML = prev.innerHTML.slice(2,)
 
     const curr = document.getElementById('cut' + opt);
-    curr.innerHTML = '☑️ '+ curr.innerHTML;
+    curr.innerHTML = '☑️ ' + curr.innerHTML;
     state.frameNum = opt;
 }
 
-const step1 = () =>{
-    let timerIntervalId;
-
+const step1 = () => {
     // selct frame
     const msg = document.createElement('div');
     msg.id = 'stageMsg';
-    msg.style.position = 'absolute';
-    msg.style.top = '30px';
-    msg.style.left = '50%';
-    msg.style.transform = 'translateX(-50%)';
-    msg.style.display = 'flex';
-    msg.style.alignItems = 'center';
-    msg.style.justifyContent = 'center';
-    msg.style.gap = '20px';
-    msg.style.fontFamily = "'NEXON Lv1 Gothic OTF', sans-serif";
-    msg.style.fontSize = '32px';
-    msg.style.fontWeight = '700';
-    msg.style.color = '#333';
-    msg.style.zIndex = '10';
-    msg.style.width = 'auto';
-    msg.style.height = 'auto';
-    msg.style.marginLeft = '0';
-    msg.innerHTML = `<span>프레임을 선택해주세요</span><span id="timerText" style="font-size: 60px; color: #e74c3c; font-family: 'LOTTERIACHAB', sans-serif; min-width: 60px; text-shadow: 0 0 5px rgba(255,255,255,0.8);">30</span>`;
+    msg.innerHTML = '프레임을 선택해주세요';
     document.body.appendChild(msg);
-
-    // 30 seconds timer
-    let timeLeft = 30;
-    const timerText = document.getElementById('timerText');
-    timerIntervalId = setInterval(() => {
-        timeLeft -= 1;
-        if (timerText) {
-            timerText.innerText = timeLeft;
-        }
-        if (timeLeft <= 0) {
-            clearInterval(timerIntervalId);
-            window.location.reload();
-        }
-    }, 1000);
 
     const cutMenu = document.createElement('div');
     cutMenu.id = 'cutMenu';
@@ -73,31 +41,31 @@ const step1 = () =>{
     cutMenu.style.boxSizing = 'border-box';
     cutMenu.style.justifyContent = 'center';
     cutMenu.style.overflow = 'hidden';
-    
-    for (let i = 1; i <= 4; i+=1) {
+
+    for (let i = 1; i <= 4; i += 1) {
         const cutContainer = document.createElement('div');
         cutContainer.style.display = 'flex';
         cutContainer.style.flexDirection = 'column';
         cutContainer.style.alignItems = 'center';
         cutContainer.style.flexShrink = '0';
         cutContainer.style.margin = '10px';
-        
+
         const cut = document.createElement('div');
-        cut.innerHTML =  i != 4 ? (i+1) + ' CUTS' : '4 CUTS';
+        cut.innerHTML = i != 4 ? (i + 1) + ' CUTS' : '4 CUTS';
         cut.className = 'cutMenu';
-        cut.id = 'cut'+i;
-        
+        cut.id = 'cut' + i;
+
         let frameW = 0;
         let frameH = 0;
         if (i == 1) { frameW = 1200; frameH = 1800; }
         else if (i == 2) { frameW = 1000; frameH = 1800; }
         else if (i == 3) { frameW = 1800; frameH = 1200; }
         else if (i == 4) { frameW = 600; frameH = 1800; }
- 
+
         const maxW = 200;
         const maxH = 350;
         const scale = Math.min(maxW / frameW, maxH / frameH);
- 
+
         const frameWrapper = document.createElement('div');
         frameWrapper.style.width = '200px';
         frameWrapper.style.height = '350px';
@@ -106,11 +74,11 @@ const step1 = () =>{
         frameWrapper.style.justifyContent = 'center';
         frameWrapper.style.margin = '20px auto';
         frameWrapper.style.cursor = 'pointer';
- 
+
         // Render with background index 3 (pink beige)
         const frameDom = renderFrame(i, 3, scale);
         frameWrapper.appendChild(frameDom);
- 
+
         cutContainer.appendChild(cut);
         cutContainer.appendChild(frameWrapper);
         cutContainer.addEventListener('click', () => { changeCut(i); });
@@ -118,9 +86,6 @@ const step1 = () =>{
     }
     const nextBtn = makeButton('Next', () => {
         if (state.frameNum == 0) return;
-        if (timerIntervalId) {
-            clearInterval(timerIntervalId);
-        }
         document.body.replaceChildren();
         step2();
     });
@@ -186,7 +151,7 @@ const step1 = () =>{
         const baseH = 450;
         const winW = window.innerWidth - 40;
         const winH = window.innerHeight - 230; // height of viewport area
-        
+
         const scale = Math.min(winW / baseW, winH / baseH, 1);
         wrapper.style.transform = `translate(-50%, -50%) scale(${scale})`;
     };

@@ -42,10 +42,10 @@
 
 body {
   overflow: hidden;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
 }
 
 @function random_range($min, $max) {
@@ -57,7 +57,7 @@ body {
 #msg {
   font-family: 'NEXON Lv1 Gothic OTF';
   font-size: 33.5;
-  color: rgb(255, 255, 255); 
+  color: rgb(255, 255, 255);
   width: 300px;
   height: 50px;
   left: 50%;
@@ -71,7 +71,7 @@ body {
 #logo {
   font-family: 'LOTTERIACHAB';
   font-size: 120;
-  color: rgb(255, 255, 255); 
+  color: rgb(255, 255, 255);
   width: 320px;
   height: 250px;
   left: 50%;
@@ -88,15 +88,17 @@ body {
   position: absolute;
   object-fit: cover;
   transform: rotateY(180deg);
-  -webkit-transform:rotateY(180deg); /* Safari and Chrome */
-  -moz-transform:rotateY(180deg); /* Firefox */
+  -webkit-transform: rotateY(180deg);
+  /* Safari and Chrome */
+  -moz-transform: rotateY(180deg);
+  /* Firefox */
 }
 
 #stageMsg {
   font-family: 'NEXON Lv1 Gothic OTF';
   font-size: 35;
   font-weight: 700;
-  color: rgb(55, 55, 55); 
+  color: rgb(55, 55, 55);
   width: 500px;
   height: 50px;
   left: 50%;
@@ -108,7 +110,7 @@ body {
 .cutMenu {
   font-family: 'NEXON Lv1 Gothic OTF';
   font-size: 15;
-  color: rgb(95, 78, 78); 
+  color: rgb(95, 78, 78);
   margin: 20px;
 
 }
@@ -128,7 +130,7 @@ body {
 #timer {
   font-family: 'NEXON Lv1 Gothic OTF';
   font-size: 25;
-  color: rgb(146, 130, 130); 
+  color: rgb(146, 130, 130);
   width: 100px;
   height: 100px;
   top: 100px;
@@ -148,18 +150,18 @@ body {
 .btn {
   font-family: 'NEXON Lv1 Gothic OTF';
   font-size: 25;
-  color: rgb(146, 130, 130); 
+  color: rgb(146, 130, 130);
   width: 100px;
   margin: 10px;
   right: 10px;
   position: absolute;
-  background-color: rgb(255, 255, 255); 
-  border-radius: 30px; 
-  border-color: rgb(255, 255, 255); 
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  border-color: rgb(255, 255, 255);
 }
 
 .snow {
-  $total: 50;
+  $total: 200;
   position: absolute;
   width: 10px;
   height: 10px;
@@ -201,13 +203,16 @@ body {
     height: 8px;
     display: block;
   }
+
   &::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.05);
     border-radius: 4px;
   }
+
   &::-webkit-scrollbar-thumb {
     background: rgba(146, 130, 130, 0.4);
     border-radius: 4px;
+
     &:hover {
       background: rgba(146, 130, 130, 0.7);
     }
