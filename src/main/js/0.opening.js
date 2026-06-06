@@ -8,10 +8,26 @@ const init = () => {
     initSnow();
     initBackground();
     initEvent();
+    preloadImages();
+}
+
+const preloadImages = () => {
+    const images = [
+        'assets/images/sano.png',
+        'assets/images/indonesia.png',
+        'assets/images/sano2.png'
+    ];
+    images.forEach(src => {
+        const img = new Image();
+        img.src = src;
+        if (typeof img.decode === 'function') {
+            img.decode().catch(() => {});
+        }
+    });
 }
 
 const initSnow = () => {
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 50; i++) {
         $('<div class="snow"></div>').appendTo('body');
     }
     const getRandomColor = () => {
@@ -39,7 +55,7 @@ const initBackground = () => {
     document.body.appendChild(logo)
 
     const message = document.createElement('div');
-    message.innerHTML = '화면을 클릭해주세요';
+    message.innerHTML = '화면을 터치해주세요';
     message.id = 'msg';
     document.body.appendChild(message)
 }
