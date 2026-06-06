@@ -18,11 +18,43 @@ const changeCut = (opt) => {
 }
 
 const step1 = () => {
+    let timerIntervalId;
+
     // selct frame
     const msg = document.createElement('div');
     msg.id = 'stageMsg';
-    msg.innerHTML = '프레임을 선택해주세요';
+    msg.style.position = 'absolute';
+    msg.style.top = '30px';
+    msg.style.left = '50%';
+    msg.style.transform = 'translateX(-50%)';
+    msg.style.display = 'flex';
+    msg.style.alignItems = 'center';
+    msg.style.justifyContent = 'center';
+    msg.style.gap = '20px';
+    msg.style.fontFamily = "'NEXON Lv1 Gothic OTF', sans-serif";
+    msg.style.fontSize = '32px';
+    msg.style.fontWeight = '700';
+    msg.style.color = '#333';
+    msg.style.zIndex = '10';
+    msg.style.width = 'auto';
+    msg.style.height = 'auto';
+    msg.style.marginLeft = '0';
+    msg.innerHTML = `<span>프레임을 선택해주세요</span><span id="timerText" style="font-size: 60px; color: #e74c3c; font-family: 'LOTTERIACHAB', sans-serif; min-width: 60px; text-shadow: 0 0 5px rgba(255,255,255,0.8);">60</span>`;
     document.body.appendChild(msg);
+
+    // 60 seconds timer
+    let timeLeft = 60;
+    const timerText = document.getElementById('timerText');
+    timerIntervalId = setInterval(() => {
+        timeLeft -= 1;
+        if (timerText) {
+            timerText.innerText = timeLeft;
+        }
+        if (timeLeft <= 0) {
+            clearInterval(timerIntervalId);
+            window.location.reload();
+        }
+    }, 1000);
 
     const cutMenu = document.createElement('div');
     cutMenu.id = 'cutMenu';
@@ -86,6 +118,9 @@ const step1 = () => {
     }
     const nextBtn = makeButton('Next', () => {
         if (state.frameNum == 0) return;
+        if (timerIntervalId) {
+            clearInterval(timerIntervalId);
+        }
         document.body.replaceChildren();
         step2();
     });

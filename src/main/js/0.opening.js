@@ -5,7 +5,6 @@ export default () => {
 }
 
 const init = () => {
-    initSnow();
     initBackground();
     initEvent();
     preloadImages();
