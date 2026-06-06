@@ -1,0 +1,215 @@
+@font-face {
+  font-family: 'PyeongChangPeace-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NEXON Lv2 Gothic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LOTTERIACHAB';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF_HambakSnow';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MBC1961GulimM';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  overflow: hidden;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}
+
+@function random_range($min, $max) {
+  $rand: random();
+  $random_range: $min + floor($rand * (($max - $min) + 1));
+  @return $random_range;
+}
+
+#msg {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  font-size: 33.5;
+  color: rgb(255, 255, 255); 
+  width: 300px;
+  height: 50px;
+  left: 50%;
+  margin-left: -150px;
+  bottom: 50px;
+  position: absolute;
+  filter: drop-shadow(0 0 3px white);
+}
+
+
+#logo {
+  font-family: 'LOTTERIACHAB';
+  font-size: 120;
+  color: rgb(255, 255, 255); 
+  width: 320px;
+  height: 250px;
+  left: 50%;
+  margin-left: -160px;
+  bottom: 50%;
+  margin-bottom: -100px;
+  text-align: center;
+  line-height: 120px;
+  position: absolute;
+  filter: drop-shadow(0 0 10px white);
+}
+
+#videoElement {
+  position: absolute;
+  object-fit: cover;
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+  -moz-transform:rotateY(180deg); /* Firefox */
+}
+
+#stageMsg {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  font-size: 35;
+  font-weight: 700;
+  color: rgb(55, 55, 55); 
+  width: 500px;
+  height: 50px;
+  left: 50%;
+  margin-left: -150px;
+  top: 50px;
+  position: absolute;
+}
+
+.cutMenu {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  font-size: 15;
+  color: rgb(95, 78, 78); 
+  margin: 20px;
+
+}
+
+#logoText {
+  font-family: 'LOTTERIACHAB';
+  text-align: center;
+  position: absolute;
+}
+
+#dateText {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  position: absolute;
+  opacity: 0.6;
+}
+
+#timer {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  font-size: 25;
+  color: rgb(146, 130, 130); 
+  width: 100px;
+  height: 100px;
+  top: 100px;
+  right: 10px;
+  position: absolute;
+}
+
+#downloadBtn {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  width: 180px;
+  height: 60px;
+  bottom: 50px;
+  left: 50%;
+  margin-left: -150px;
+}
+
+.btn {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  font-size: 25;
+  color: rgb(146, 130, 130); 
+  width: 100px;
+  margin: 10px;
+  right: 10px;
+  position: absolute;
+  background-color: rgb(255, 255, 255); 
+  border-radius: 30px; 
+  border-color: rgb(255, 255, 255); 
+}
+
+.snow {
+  $total: 200;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 7px white);
+
+  @for $i from 1 through $total {
+    $random-x: random(1000000) * 0.0001vw;
+    $random-offset: random_range(-100000, 100000) * 0.0001vw;
+    $random-x-end: $random-x + $random-offset;
+    $random-x-end-yoyo: $random-x + calc($random-offset / 2);
+    $random-yoyo-time: calc(random_range(30000, 80000) / 100000);
+    $random-yoyo-y: $random-yoyo-time * 100vh;
+    $random-scale: random(10000) * 0.0001;
+    $fall-duration: random_range(10, 30) * 1s;
+    $fall-delay: random(30) * -1s;
+
+    &:nth-child(#{$i}) {
+      opacity: random(10000) * 0.0001;
+      transform: translate($random-x, -10px) scale($random-scale);
+      animation: fall-#{$i} $fall-duration $fall-delay linear infinite;
+    }
+
+    @keyframes fall-#{$i} {
+      #{percentage($random-yoyo-time)} {
+        transform: translate($random-x-end, $random-yoyo-y) scale($random-scale);
+      }
+
+      to {
+        transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
+      }
+    }
+  }
+}
+
+#cutMenu {
+  &::-webkit-scrollbar {
+    height: 8px;
+    display: block;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(146, 130, 130, 0.4);
+    border-radius: 4px;
+    &:hover {
+      background: rgba(146, 130, 130, 0.7);
+    }
+  }
+}
